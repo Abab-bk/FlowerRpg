@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Dev\\DotNet\\FlowerRpg\\Libs\\FlowerRpg.Fantasy\\FlowerRpg.Fantasy.csproj",
+      "projectUniqueName": "D:\\Dev\\DotNet\\FlowerRpg\\Libs\\FlowerRpg.Fantasy\\FlowerRpg.Fantasy.csproj",
       "projectName": "FlowerRpg.Fantasy",
-      "projectPath": "E:\\Dev\\DotNet\\FlowerRpg\\Libs\\FlowerRpg.Fantasy\\FlowerRpg.Fantasy.csproj",
+      "projectPath": "D:\\Dev\\DotNet\\FlowerRpg\\Libs\\FlowerRpg.Fantasy\\FlowerRpg.Fantasy.csproj",
       "packagesPath": "C:\\Users\\14709\\.nuget\\packages\\",
-      "outputPath": "E:\\Dev\\DotNet\\FlowerRpg\\Libs\\FlowerRpg.Fantasy\\obj\\",
+      "outputPath": "D:\\Dev\\DotNet\\FlowerRpg\\Libs\\FlowerRpg.Fantasy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\14709\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -51,8 +51,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Dev\\DotNet\\FlowerRpg\\Src\\FlowerRpg.csproj": {
-              "projectPath": "E:\\Dev\\DotNet\\FlowerRpg\\Src\\FlowerRpg.csproj"
+            "D:\\Dev\\DotNet\\FlowerRpg\\Src\\FlowerRpg.csproj": {
+              "projectPath": "D:\\Dev\\DotNet\\FlowerRpg\\Src\\FlowerRpg.csproj"
             }
           }
         }
