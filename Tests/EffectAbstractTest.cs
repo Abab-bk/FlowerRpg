@@ -15,11 +15,11 @@ public class EffectAbstractTest
     public void Setup()
     {
         _character = new Character(
-            new List<IClass>()
+            new List<BaseClass>()
             {
-                new Warrior()
+                new BaseClass()
             },
-            new Human(),
+            new BaseRace(),
             new List<Effect>()
             )
         {

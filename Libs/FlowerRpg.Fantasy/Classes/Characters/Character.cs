@@ -1,44 +1,71 @@
 ﻿using FlowerRpg.Effects;
+using FlowerRpg.Fantasy.Classes.Classes;
+using FlowerRpg.Fantasy.Classes.Races;
 using FlowerRpg.Fantasy.Effects;
 using FlowerRpg.Interfaces;
 using FlowerRpg.Stats;
 
 namespace FlowerRpg.Fantasy.Classes.Characters;
 
-public class Character(List<IClass> classes, IRace race, List<Effect> effects) 
-    : ICharacter<CharacterStats>, IHasEffect<Effect>
+public class Character :
+    ICharacter<CharacterStats>,
+    IHasEffect<Effect>,
+    IHasClass<BaseClass>,
+    IHasRace<BaseRace>
 {
     public Action<Effect> OnEffectAdded { get; set; }
-    public event Action<IClass> OnClassAdded;
-    public event Action<IClass> OnClassRemoved;
-    public event Action<IRace> OnRaceSet;
+    public event Action<BaseClass> OnClassAdded;
+    public event Action<BaseClass> OnClassRemoved;
+    public event Action<BaseRace> OnRaceSet;
     
     public int Id { get; set; } = 0;
     public string Name { get; set; } = "";
-    
-    public List<IClass> Classes { get; } = classes;
-    public IRace Race { get; private set; } = race;
-    public List<Effect> Effects { get; } = effects;
-    
     public CharacterStats StatsData { get; } = new CharacterStats();
+    public List<BaseClass> Classes { get; private set; }
+    public BaseRace Race { get; private set; }
+    public List<Effect> Effects { get; }
     
-    public void AddClass(IClass @class)
+    public Character(List<BaseClass> classes, BaseRace race, List<Effect> effects)
+    {
+        Classes = classes;
+        Effects = effects;
+        
+        SetRace(race);
+        SetAllClasses();
+        
+        foreach (var effect in effects)
+        {
+            ApplyEffect(effect);
+        }
+    }
+
+    private void SetAllClasses()
+    {
+        foreach (var @class in Classes)
+        {
+            @class.Target = this;
+        }
+    }
+
+    public void AddClass(BaseClass @class)
     {
         Classes.Add(@class);
+        @class.Target = this;
         OnClassAdded?.Invoke(@class);
     }
 
-    public void RemoveClass(IClass @class)
+    public void RemoveClass(BaseClass @class)
     {
         Classes.Remove(@class);
         OnClassRemoved?.Invoke(@class);
     }
 
-    public bool HasClass(IClass @class) => Classes.Contains(@class);
+    public bool HasClass(BaseClass @class) => Classes.Contains(@class);
 
-    public void SetRace(IRace race)
+    public void SetRace(BaseRace race)
     {
         Race = race;
+        race.Target = this;
         OnRaceSet?.Invoke(race);
     }
     
@@ -46,7 +73,11 @@ public class Character(List<IClass> classes, IRace race, List<Effect> effects)
     {
         Effects.Add(effect);
         OnEffectAdded?.Invoke(effect);
-        
+        ApplyEffect(effect);
+    }
+
+    private void ApplyEffect(Effect effect)
+    {
         var modifiers = effect.EffectType.Data(StatsData);
         modifiers.Add(Modifier.Plus(effect.Potency));
     }
