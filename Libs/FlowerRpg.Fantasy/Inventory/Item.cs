@@ -20,7 +20,11 @@ public class Item(ItemTemplate itemTemplate) : IItem, IHasItemTemplate<ItemTempl
     public int MaxStack
     {
         get => _maxStack;
-        set => _maxStack = (int)MathF.Max(1, value);
+        set
+        {
+            _maxStack = (int)MathF.Max(1, value);
+            if (Quantity > _maxStack) Quantity = _maxStack;
+        }
     }
 
     public int Quantity

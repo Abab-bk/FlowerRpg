@@ -2,6 +2,7 @@
 
 namespace FlowerRpg.Fantasy.Inventory;
 
+// Maybe rework...
 public class StackInventory(int slotCount) : IInventory<Item>
 {
     public event Action<Item>
@@ -9,7 +10,7 @@ public class StackInventory(int slotCount) : IInventory<Item>
         OnItemRemoved;
     
     public IReadOnlyList<Item> Items => _items;
-    private List<Item> _items = new();
+    private readonly List<Item> _items = new();
     
     public int SlotCount = slotCount;
 
@@ -27,6 +28,8 @@ public class StackInventory(int slotCount) : IInventory<Item>
 
     public bool AddItem(Item item)
     {
+        var newItem = item.Clone();
+        
         bool AddNewItem(Item addItem)
         {
             if (_items.Count >= SlotCount) return false;
@@ -38,19 +41,20 @@ public class StackInventory(int slotCount) : IInventory<Item>
         // if exists in inventory
         foreach (var item1 in _items)
         {
-            if (!item1.IsEqual(item)) continue;
-            if (item1.TryAddQuantity(item.Quantity, out var needAdded))
+            if (!item1.IsEqual(newItem)) continue;
+            if (item1.TryAddQuantity(newItem.Quantity, out var needAdded))
             {
-                return true;
+                if (needAdded == 0) return true;
+                newItem.Quantity = needAdded;
+                return AddNewItem(newItem);
             }
 
             // if exists and to max, add new one
-            var newItem = item1.Clone();
             item1.Quantity = needAdded;
             return AddNewItem(newItem);
         }
 
-        return AddNewItem(item.Clone());
+        return AddNewItem(newItem);
     }
 
     public bool RemoveItem(Item item)

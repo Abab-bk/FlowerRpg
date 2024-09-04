@@ -1,6 +1,8 @@
-﻿namespace FlowerRpg.Interfaces;
+﻿using FlowerRpg.Effects;
 
-public interface IRace
+namespace FlowerRpg.Interfaces;
+
+public interface IRace : IHasEffect
 {
     public int Id { get; set; }
     public string Name { get; set; }
