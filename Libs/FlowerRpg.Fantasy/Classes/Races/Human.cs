@@ -1,37 +1,38 @@
 ﻿using FlowerRpg.Effects;
+using FlowerRpg.Fantasy.Effects;
 using FlowerRpg.Interfaces;
 
 namespace FlowerRpg.Fantasy.Classes.Races;
 
-public class Human : IRace
+public class Human : IRace, IHasEffect<Effect>
 {
     public int Id { get; set; } = 0;
     public string Name { get; set; } = "Human";
 
-    public Action<EffectAbstract> OnEffectAdded { get; set; }
+    public Action<Effect> OnEffectAdded { get; set; }
 
-    public List<EffectAbstract> Effects { get; private set; }
-
-    public void AddEffect(EffectAbstract effectAbstract)
+    public List<Effect> Effects { get; private set; }
+    
+    public void AddEffect(Effect effect)
     {
-        Effects.Add(effectAbstract);
-        OnEffectAdded?.Invoke(effectAbstract);
+        Effects.Add(effect);
+        OnEffectAdded?.Invoke(effect);
     }
 
-    public bool RemoveEffect(EffectAbstract effectAbstract)
+    public bool RemoveEffect(Effect effect)
     {
-        if (Effects.Remove(effectAbstract))
+        if (Effects.Remove(effect))
         {
-            OnEffectAdded?.Invoke(effectAbstract);
+            OnEffectAdded?.Invoke(effect);
             return true;
         }
 
         return false;
     }
 
-    public bool HasEffect(EffectAbstract effectAbstract)
+    public bool HasEffect(Effect effect)
     {
-        return Effects.Contains(effectAbstract);
+        return Effects.Contains(effect);
     }
 
     public void ClearEffects()

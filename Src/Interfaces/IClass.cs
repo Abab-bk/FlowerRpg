@@ -1,8 +1,6 @@
-﻿using FlowerRpg.Effects;
+﻿namespace FlowerRpg.Interfaces;
 
-namespace FlowerRpg.Interfaces;
-
-public interface IClass : IHasEffect<EffectAbstract>
+public interface IClass
 {
     public int Id { get; set; }
     public string Name { get; set; }
