@@ -13,10 +13,32 @@ public class BaseClass : IClass, IHasEffect<Effect>
 
     public Action<Effect> OnEffectAdded { get; set; }
 
-    public List<Effect> Effects { get; private set; }
-    
-    public Character Target;
-    
+    public List<Effect> Effects { get; private set; } = [];
+
+    public Character Target
+    {
+        get => _target;
+        set
+        {
+            _target = value;
+            foreach (var effect in Effects)
+            {
+                ApplyEffect(effect);
+            }
+        }
+    }
+
+    private Character _target;
+
+    public void RemoveSelf()
+    {
+        foreach (var effect in Effects)
+        {
+            var modifiable = effect.EffectType.Data(Target.StatsData);
+            modifiable.modifiers.Remove(effect.GetModifier());
+        }
+    }
+
     public void AddEffect(Effect effect)
     {
         Effects.Add(effect);
@@ -25,8 +47,8 @@ public class BaseClass : IClass, IHasEffect<Effect>
 
     private void ApplyEffect(Effect effect)
     {
-        var modifiers = effect.EffectType.Data(Target.StatsData);
-        modifiers.Add(Modifier.Plus(effect.Potency));
+        var modifiable = effect.EffectType.Data(Target.StatsData);
+        modifiable.modifiers.Add(effect.GetModifier());
     }
 
     public bool RemoveEffect(Effect effect)

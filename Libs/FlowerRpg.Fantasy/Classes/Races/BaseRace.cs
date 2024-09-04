@@ -10,11 +10,31 @@ public class BaseRace : IRace, IHasEffect<Effect>
 {
     public int Id { get; set; } = 0;
     public string Name { get; set; } = "BaseRace";
-    public Character Target;
-    
+    public Character Target
+    {
+        get => _target;
+        set
+        {
+            _target = value;
+            foreach (var effect in Effects)
+            {
+                ApplyEffect(effect);
+            }
+        }
+    }
     public Action<Effect> OnEffectAdded { get; set; }
-
-    public List<Effect> Effects { get; private set; }
+    public List<Effect> Effects { get; private set; } = [];
+    
+    private Character _target;
+    
+    public void RemoveSelf()
+    {
+        foreach (var effect in Effects)
+        {
+            var modifiable = effect.EffectType.Data(Target.StatsData);
+            modifiable.modifiers.Remove(effect.GetModifier());
+        }
+    }
     
     public void AddEffect(Effect effect)
     {
@@ -24,8 +44,8 @@ public class BaseRace : IRace, IHasEffect<Effect>
     
     private void ApplyEffect(Effect effect)
     {
-        var modifiers = effect.EffectType.Data(Target.StatsData);
-        modifiers.Add(Modifier.Plus(effect.Potency));
+        var modifiable = effect.EffectType.Data(Target.StatsData);
+        modifiable.modifiers.Add(effect.GetModifier());
     }
 
     public bool RemoveEffect(Effect effect)

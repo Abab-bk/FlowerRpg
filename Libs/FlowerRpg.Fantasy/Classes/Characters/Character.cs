@@ -57,6 +57,7 @@ public class Character :
     public void RemoveClass(BaseClass @class)
     {
         Classes.Remove(@class);
+        @class.RemoveSelf();
         OnClassRemoved?.Invoke(@class);
     }
 
@@ -64,6 +65,7 @@ public class Character :
 
     public void SetRace(BaseRace race)
     {
+        if (Race != null) Race.RemoveSelf();
         Race = race;
         race.Target = this;
         OnRaceSet?.Invoke(race);
@@ -78,8 +80,8 @@ public class Character :
 
     private void ApplyEffect(Effect effect)
     {
-        var modifiers = effect.EffectType.Data(StatsData);
-        modifiers.Add(Modifier.Plus(effect.Potency));
+        var modifiable = effect.EffectType.Data(StatsData);
+        modifiable.modifiers.Add(Modifier.Plus(effect.Potency));
     }
 
     public bool RemoveEffect(Effect effect)
