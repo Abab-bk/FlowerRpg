@@ -8,30 +8,30 @@ public class Warrior : IClass
     public int Id { get; set; } = 0;
     public string Name { get; set; } = "Warrior";
 
-    public Action<Effect> OnEffectAdded { get; set; }
+    public Action<EffectAbstract> OnEffectAdded { get; set; }
 
-    public List<Effect> Effects { get; private set; }
+    public List<EffectAbstract> Effects { get; private set; }
     
-    public void AddEffect(Effect effect)
+    public void AddEffect(EffectAbstract effectAbstract)
     {
-        Effects.Add(effect);
-        OnEffectAdded?.Invoke(effect);
+        Effects.Add(effectAbstract);
+        OnEffectAdded?.Invoke(effectAbstract);
     }
 
-    public bool RemoveEffect(Effect effect)
+    public bool RemoveEffect(EffectAbstract effectAbstract)
     {
-        if (Effects.Remove(effect))
+        if (Effects.Remove(effectAbstract))
         {
-            OnEffectAdded?.Invoke(effect);
+            OnEffectAdded?.Invoke(effectAbstract);
             return true;
         }
 
         return false;
     }
 
-    public bool HasEffect(Effect effect)
+    public bool HasEffect(EffectAbstract effectAbstract)
     {
-        return Effects.Contains(effect);
+        return Effects.Contains(effectAbstract);
     }
 
     public void ClearEffects()

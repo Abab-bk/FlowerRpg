@@ -5,7 +5,8 @@ using FlowerRpg.Stats;
 
 namespace FlowerRpg.Fantasy.Classes.Characters;
 
-public class Character(List<IClass> classes, IRace race, List<Effect> effects) : ICharacter<CharacterStats>
+public class Character(List<IClass> classes, IRace race, List<Effect> effects) 
+    : ICharacter<CharacterStats>, IHasEffect<Effect>
 {
     public Action<Effect> OnEffectAdded { get; set; }
     public event Action<IClass> OnClassAdded;
@@ -45,19 +46,9 @@ public class Character(List<IClass> classes, IRace race, List<Effect> effects) :
     {
         Effects.Add(effect);
         OnEffectAdded?.Invoke(effect);
-
-        switch (effect.EffectType)
-        {
-            case EffectType.HealthBonusFlat:
-                StatsData.Health.flat.modifiers.Add(Modifier.Plus(effect.Potency));
-                break;
-            case EffectType.HealthBonusPercentAdd:
-                StatsData.Health.percentAdd.modifiers.Add(Modifier.Plus(effect.Potency));
-                break;
-            case EffectType.HealthBonusPercentMul:
-                StatsData.Health.percentTimes.modifiers.Add(Modifier.Plus(effect.Potency));
-                break;
-        }
+        
+        var modifiers = effect.EffectType.Data(StatsData);
+        modifiers.Add(Modifier.Plus(effect.Potency));
     }
 
     public bool RemoveEffect(Effect effect)

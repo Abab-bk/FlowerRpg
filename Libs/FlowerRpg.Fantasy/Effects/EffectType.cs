@@ -1,9 +1,11 @@
-﻿namespace FlowerRpg.Fantasy.Effects;
+﻿using FlowerRpg.Effects;
+using FlowerRpg.Fantasy.Classes;
+using FlowerRpg.Stats;
 
-public static class EffectType
+namespace FlowerRpg.Fantasy.Effects;
+
+public class EffectType(Func<CharacterStats, IPriorityCollection<IModifier<float>>> data)
+    : IEffectType<CharacterStats>
 {
-    public const int
-        HealthBonusFlat = 0,
-        HealthBonusPercentAdd = 1,
-        HealthBonusPercentMul = 2;
+    public Func<CharacterStats, IPriorityCollection<IModifier<float>>> Data => data;
 }

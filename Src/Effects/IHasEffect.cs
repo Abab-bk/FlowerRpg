@@ -1,11 +1,11 @@
 ﻿namespace FlowerRpg.Effects;
 
-public interface IHasEffect
+public interface IHasEffect<T> where T : EffectAbstract
 {
-    public Action<Effect> OnEffectAdded { get; set; }
-    public List<Effect> Effects { get; }
-    public void AddEffect(Effect effect);
-    public bool RemoveEffect(Effect effect);
-    public bool HasEffect(Effect effect);
+    public Action<T> OnEffectAdded { get; set; }
+    public List<T> Effects { get; }
+    public void AddEffect(T effectAbstract);
+    public bool RemoveEffect(T effectAbstract);
+    public bool HasEffect(T effectAbstract);
     public void ClearEffects();
 }

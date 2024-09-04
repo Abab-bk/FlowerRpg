@@ -5,7 +5,7 @@ namespace FlowerRpg.Interfaces;
 /// <summary>
 /// A character.
 /// </summary>
-public interface ICharacter<T> : IHasEffect, IHasStats<T> where T : IStatsData
+public interface ICharacter<T> : IHasStats<T> where T : IStatsData
 {
     public event Action<IClass> OnClassAdded;
     public event Action<IClass> OnClassRemoved;

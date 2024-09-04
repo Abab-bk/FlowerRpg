@@ -1,7 +1,6 @@
 ﻿namespace FlowerRpg.Effects;
 
-public interface IEffect
+public abstract class EffectAbstract
 {
-    public int EffectType { get; set; }
     public float Potency { get; set; }
 }
