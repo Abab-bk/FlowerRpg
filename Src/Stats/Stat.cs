@@ -5,7 +5,8 @@ namespace FlowerRpg.Stats;
 public class Stat
 {
     public event Action<float> ValueChanged;
-
+    public int StatType;
+    
     public float BaseValue
     {
         get => _baseValue;
@@ -40,11 +41,19 @@ public class Stat
     private readonly List<StatModifier> _statModifiers;
     public readonly ReadOnlyCollection<StatModifier> StatModifiers;
 
-    public Stat(float baseValue)
+    // public Stat(float baseValue)
+    // {
+    //     BaseValue = baseValue;
+    //     _statModifiers = new List<StatModifier>();
+    //     StatModifiers = _statModifiers.AsReadOnly();
+    // }
+    
+    public Stat(float baseValue, int statType)// : this(baseValue)
     {
         BaseValue = baseValue;
         _statModifiers = new List<StatModifier>();
         StatModifiers = _statModifiers.AsReadOnly();
+        StatType = statType;
     }
     
     public void ForceCalculate()

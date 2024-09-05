@@ -9,22 +9,16 @@ public class Attribute
     
     public float BaseValue = 0f;
     
-    public readonly Stat MaxValue = new Stat(100f);
-    public readonly float MinValue = 0;
+    public readonly Stat MaxValue;
+    public readonly float MinValue;
 
     private readonly List<StatModifier> _statModifiers;
     public readonly ReadOnlyCollection<StatModifier> StatModifiers;
     
-    public Attribute(float minValue, float maxValue)
+    public Attribute(float minValue, float maxValue, int statType)
     {
         MinValue = minValue;
-        MaxValue = new Stat(maxValue);
-        _statModifiers = new List<StatModifier>();
-        StatModifiers = _statModifiers.AsReadOnly();
-    }
-
-    public Attribute()
-    {
+        MaxValue = new Stat(maxValue, statType);
         _statModifiers = new List<StatModifier>();
         StatModifiers = _statModifiers.AsReadOnly();
     }
