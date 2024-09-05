@@ -1,6 +1,6 @@
 ﻿namespace FlowerRpg.Loot;
 
-public interface IIsLootTable
+public interface IIsLootTable<out T> where T : ILootTable<ILootTableEntry>
 {
-    public ILootTable LootTable { get; }
+    public T LootTable { get; }
 }
