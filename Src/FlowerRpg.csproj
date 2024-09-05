@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Classes\" />
-      <Folder Include="Stats\" />
     </ItemGroup>
 
 </Project>

@@ -5,8 +5,9 @@ namespace FlowerRpg.Fantasy.Effects;
 public class Effect : FlowerRpg.Effects.EffectAbstract
 {
     public EffectType EffectType { get; set; }
-    public IModifier<IReadOnlyValue<float>, float> GetModifier()
+    
+    public void Apply()
     {
-        return EffectType.GetModifier(Potency);
+        EffectType.Apply(Potency);
     }
 }

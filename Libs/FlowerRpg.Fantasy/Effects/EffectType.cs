@@ -1,24 +1,25 @@
-﻿using System.Numerics;
-using FlowerRpg.Effects;
+﻿using FlowerRpg.Effects;
 using FlowerRpg.Fantasy.Classes;
 using FlowerRpg.Stats;
 
 namespace FlowerRpg.Fantasy.Effects;
 
-public class EffectType(Func<CharacterStats, IModifiable<float>> data)
+public class EffectType(Stat stat, ModifierType modifierType)
     : IEffectType<CharacterStats>
 {
-    public Func<CharacterStats, IModifiable<float>> Data => data;
+    public Stat Data => stat;
 
-    private IModifier<IReadOnlyValue<float>, float> _data;
-    
-    public IModifier<IReadOnlyValue<float>, float> GetModifier(float value)
+    public void Apply(float value)
     {
-        if (_data == null)
-        {
-            _data = Modifier.Plus(value);
-        }
-        
-        return _data;
+        stat.AddModifier(new StatModifier(
+            value,
+            modifierType,
+            this
+            ));
+    }
+    
+    public void Remove()
+    {
+        stat.RemoveAllModifiersFromSource(this);
     }
 }

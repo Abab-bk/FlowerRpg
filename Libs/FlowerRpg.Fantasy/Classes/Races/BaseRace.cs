@@ -31,8 +31,7 @@ public class BaseRace : IRace, IHasEffect<Effect>
     {
         foreach (var effect in Effects)
         {
-            var modifiable = effect.EffectType.Data(Target.StatsData);
-            modifiable.modifiers.Remove(effect.GetModifier());
+            RemoveEffect(effect);
         }
     }
     
@@ -44,8 +43,7 @@ public class BaseRace : IRace, IHasEffect<Effect>
     
     private void ApplyEffect(Effect effect)
     {
-        var modifiable = effect.EffectType.Data(Target.StatsData);
-        modifiable.modifiers.Add(effect.GetModifier());
+        effect.Apply();
     }
 
     public bool RemoveEffect(Effect effect)

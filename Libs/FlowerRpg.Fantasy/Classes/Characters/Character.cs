@@ -80,8 +80,7 @@ public class Character :
 
     private void ApplyEffect(Effect effect)
     {
-        var modifiable = effect.EffectType.Data(StatsData);
-        modifiable.modifiers.Add(Modifier.Plus(effect.Potency));
+        effect.Apply();
     }
 
     public bool RemoveEffect(Effect effect)

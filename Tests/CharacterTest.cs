@@ -2,6 +2,7 @@
 using FlowerRpg.Fantasy.Classes.Classes;
 using FlowerRpg.Fantasy.Classes.Races;
 using FlowerRpg.Fantasy.Effects;
+using FlowerRpg.Stats;
 
 namespace Tests;
 
@@ -28,7 +29,10 @@ public class CharacterTest
             [
                 new Effect()
                 {
-                    EffectType = new EffectType(stats => stats.Strength.flat),
+                    EffectType = new EffectType(
+                        _character.StatsData.Strength,
+                        ModifierType.Flat
+                        ),
                     Potency = 10f
                 }
             ]
@@ -42,7 +46,10 @@ public class CharacterTest
         var baseClass = new BaseClass();
         baseClass.AddEffect(new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 100f
         });
         _character.AddClass(baseClass);
@@ -55,7 +62,10 @@ public class CharacterTest
         var baseClass = new BaseClass();
         baseClass.AddEffect(new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 100f
         });
         _character.AddClass(baseClass);
@@ -69,7 +79,10 @@ public class CharacterTest
         var baseClass = new BaseClass();
         baseClass.AddEffect(new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 100f
         });
         _character.AddClass(baseClass);
@@ -82,7 +95,10 @@ public class CharacterTest
         var race = new BaseRace();
         race.AddEffect(new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 100f
         });
         _character.SetRace(race);
@@ -94,7 +110,10 @@ public class CharacterTest
     {
         _character.AddEffect(new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 10f
         });
         Assert.That(_character.StatsData.Strength.Value, Is.EqualTo(10f));
@@ -105,7 +124,10 @@ public class CharacterTest
     {
         var effect = new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 10f
         };
         _character.AddEffect(effect);
@@ -118,7 +140,10 @@ public class CharacterTest
     {
         var effect = new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 10f
         };
         _character.AddEffect(effect);
@@ -130,7 +155,10 @@ public class CharacterTest
     {
         var effect = new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 10f
         };
         _character.AddEffect(effect);
@@ -146,13 +174,19 @@ public class CharacterTest
         
         class1.AddEffect(new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 10f
         });
         
         class2.AddEffect(new Effect()
         {
-            EffectType = new EffectType(stats => stats.Strength.flat),
+            EffectType = new EffectType(
+                _character.StatsData.Strength,
+                ModifierType.Flat
+            ),
             Potency = 10f
         });
         
