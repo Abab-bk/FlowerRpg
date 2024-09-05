@@ -1,7 +1,8 @@
-﻿using FlowerRpg.Fantasy.Classes.Affixes;
-using FlowerRpg.Fantasy.Classes.Characters;
-using FlowerRpg.Fantasy.Classes.Races;
+﻿using FlowerRpg.Fantasy.Characters;
+using FlowerRpg.Fantasy.Classes.Affixes;
 using FlowerRpg.Fantasy.Inventory;
+using FlowerRpg.Fantasy.Items;
+using FlowerRpg.Fantasy.Races;
 
 namespace Tests;
 

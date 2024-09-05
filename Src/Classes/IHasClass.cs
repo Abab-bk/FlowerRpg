@@ -1,6 +1,4 @@
-﻿using FlowerRpg.Interfaces;
-
-namespace FlowerRpg.Effects;
+﻿namespace FlowerRpg.Classes;
 
 public interface IHasClass<T> where T : IClass
 {

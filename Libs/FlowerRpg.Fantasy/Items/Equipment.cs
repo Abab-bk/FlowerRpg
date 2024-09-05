@@ -1,6 +1,7 @@
 ﻿using FlowerRpg.Fantasy.Classes;
+using FlowerRpg.Fantasy.Inventory;
 
-namespace FlowerRpg.Fantasy.Inventory;
+namespace FlowerRpg.Fantasy.Items;
 
 public class Equipment(ItemTemplate itemTemplate) : AffixItem(itemTemplate)
 {

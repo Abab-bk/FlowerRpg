@@ -1,10 +1,9 @@
-﻿using FlowerRpg.Effects;
-using FlowerRpg.Fantasy.Classes.Characters;
+﻿using FlowerRpg.Classes;
+using FlowerRpg.Fantasy.Characters;
 using FlowerRpg.Fantasy.Effects;
 using FlowerRpg.Interfaces;
-using FlowerRpg.Stats;
 
-namespace FlowerRpg.Fantasy.Classes.Classes;
+namespace FlowerRpg.Fantasy.Classes;
 
 public class BaseClass : IClass, IHasEffect<Effect>
 {

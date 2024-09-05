@@ -1,8 +1,8 @@
 ﻿using FlowerRpg.Fantasy.Classes;
 using FlowerRpg.Fantasy.Classes.Affixes;
-using FlowerRpg.Fantasy.Classes.Characters;
+using FlowerRpg.Fantasy.Inventory;
 
-namespace FlowerRpg.Fantasy.Inventory;
+namespace FlowerRpg.Fantasy.Items;
 
 public class AffixItem(ItemTemplate itemTemplate) : Item(itemTemplate)
 {

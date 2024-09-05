@@ -1,6 +1,6 @@
-﻿using FlowerRpg.Fantasy.Classes.Characters;
-using FlowerRpg.Fantasy.Classes.Races;
+﻿using FlowerRpg.Fantasy.Characters;
 using FlowerRpg.Fantasy.Effects;
+using FlowerRpg.Fantasy.Races;
 using FlowerRpg.Fantasy.Requirements;
 using FlowerRpg.Requirements;
 using FlowerRpg.Stats;

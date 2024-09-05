@@ -1,10 +1,8 @@
-﻿using FlowerRpg.Effects;
-using FlowerRpg.Fantasy.Classes.Characters;
+﻿using FlowerRpg.Fantasy.Characters;
 using FlowerRpg.Fantasy.Effects;
 using FlowerRpg.Interfaces;
-using FlowerRpg.Stats;
 
-namespace FlowerRpg.Fantasy.Classes.Races;
+namespace FlowerRpg.Fantasy.Races;
 
 public class BaseRace : IRace, IHasEffect<Effect>
 {

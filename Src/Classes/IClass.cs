@@ -1,4 +1,4 @@
-﻿namespace FlowerRpg.Interfaces;
+﻿namespace FlowerRpg.Classes;
 
 public interface IClass
 {

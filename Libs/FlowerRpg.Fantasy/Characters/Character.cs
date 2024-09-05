@@ -1,10 +1,12 @@
-﻿using FlowerRpg.Effects;
-using FlowerRpg.Fantasy.Classes.Classes;
-using FlowerRpg.Fantasy.Classes.Races;
+﻿using FlowerRpg.Characters;
+using FlowerRpg.Classes;
+using FlowerRpg.Effects;
+using FlowerRpg.Fantasy.Classes;
 using FlowerRpg.Fantasy.Effects;
+using FlowerRpg.Fantasy.Races;
 using FlowerRpg.Interfaces;
 
-namespace FlowerRpg.Fantasy.Classes.Characters;
+namespace FlowerRpg.Fantasy.Characters;
 
 public class Character :
     ICharacter<CharacterStats>,

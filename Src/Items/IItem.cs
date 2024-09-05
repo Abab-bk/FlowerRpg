@@ -1,6 +1,7 @@
 ﻿using FlowerRpg.Interfaces;
+using FlowerRpg.Inventory;
 
-namespace FlowerRpg.Inventory;
+namespace FlowerRpg.Items;
 
 public interface IItem : IHasItemTemplate<IItemTemplate>
 {

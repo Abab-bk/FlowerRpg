@@ -1,4 +1,4 @@
-﻿using FlowerRpg.Fantasy.Inventory;
+﻿using FlowerRpg.Fantasy.Items;
 using FlowerRpg.Fantasy.Loot;
 
 namespace Tests;

@@ -1,6 +1,6 @@
-﻿using FlowerRpg.Effects;
+﻿using FlowerRpg.Interfaces;
 
-namespace FlowerRpg.Interfaces;
+namespace FlowerRpg.Characters;
 
 /// <summary>
 /// A character.

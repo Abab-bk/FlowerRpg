@@ -1,4 +1,4 @@
-﻿using FlowerRpg.Fantasy.Classes.Characters;
+﻿using FlowerRpg.Fantasy.Characters;
 using FlowerRpg.Requirements;
 
 namespace FlowerRpg.Fantasy.Requirements;

@@ -1,5 +1,6 @@
 using FlowerRpg.Fantasy.Enums;
 using FlowerRpg.Fantasy.Inventory;
+using FlowerRpg.Fantasy.Items;
 
 namespace Tests;
 

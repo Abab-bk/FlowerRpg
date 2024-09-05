@@ -1,6 +1,6 @@
-﻿using FlowerRpg.Fantasy.Classes.Characters;
-using FlowerRpg.Fantasy.Classes.Races;
+﻿using FlowerRpg.Fantasy.Characters;
 using FlowerRpg.Fantasy.Combat;
+using FlowerRpg.Fantasy.Races;
 
 namespace Tests;
 

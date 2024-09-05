@@ -1,4 +1,6 @@
-﻿namespace FlowerRpg.Inventory;
+﻿using FlowerRpg.Items;
+
+namespace FlowerRpg.Inventory;
 
 public interface IInventory<T> where T : IItem
 {

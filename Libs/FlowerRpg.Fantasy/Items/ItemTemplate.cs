@@ -1,7 +1,7 @@
 ﻿using FlowerRpg.Fantasy.Enums;
 using FlowerRpg.Inventory;
 
-namespace FlowerRpg.Fantasy.Inventory;
+namespace FlowerRpg.Fantasy.Items;
 
 public class ItemTemplate : IItemTemplate
 {
