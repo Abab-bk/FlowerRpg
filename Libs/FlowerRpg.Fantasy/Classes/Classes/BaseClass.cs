@@ -32,15 +32,16 @@ public class BaseClass : IClass, IHasEffect<Effect>
 
     public void RemoveSelf()
     {
-        foreach (var effect in Effects)
+        for (int i = Effects.Count - 1; i >= 0 ; i--)
         {
-            effect.EffectType.Remove();
+            RemoveEffect(Effects[i]);
         }
     }
 
     public void AddEffect(Effect effect)
     {
         Effects.Add(effect);
+        if (_target != null) effect.Apply();
         OnEffectAdded?.Invoke(effect);
     }
 
@@ -53,6 +54,7 @@ public class BaseClass : IClass, IHasEffect<Effect>
     {
         if (Effects.Remove(effect))
         {
+            effect.Remove();
             OnEffectAdded?.Invoke(effect);
             return true;
         }

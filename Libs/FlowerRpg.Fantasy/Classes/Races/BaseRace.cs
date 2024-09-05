@@ -15,6 +15,8 @@ public class BaseRace : IRace, IHasEffect<Effect>
         get => _target;
         set
         {
+            if (_target != null) RemoveSelf();
+
             _target = value;
             foreach (var effect in Effects)
             {
@@ -29,15 +31,16 @@ public class BaseRace : IRace, IHasEffect<Effect>
     
     public void RemoveSelf()
     {
-        foreach (var effect in Effects)
+        for (int i = Effects.Count - 1; i >= 0 ; i--)
         {
-            RemoveEffect(effect);
+            RemoveEffect(Effects[i]);
         }
     }
     
     public void AddEffect(Effect effect)
     {
         Effects.Add(effect);
+        if (_target != null) effect.Apply();
         OnEffectAdded?.Invoke(effect);
     }
     
@@ -50,6 +53,7 @@ public class BaseRace : IRace, IHasEffect<Effect>
     {
         if (Effects.Remove(effect))
         {
+            effect.Remove();
             OnEffectAdded?.Invoke(effect);
             return true;
         }

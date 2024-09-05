@@ -3,7 +3,6 @@ using FlowerRpg.Fantasy.Classes.Classes;
 using FlowerRpg.Fantasy.Classes.Races;
 using FlowerRpg.Fantasy.Effects;
 using FlowerRpg.Interfaces;
-using FlowerRpg.Stats;
 
 namespace FlowerRpg.Fantasy.Classes.Characters;
 
@@ -30,13 +29,13 @@ public class Character :
         Classes = classes;
         Effects = effects;
         
-        SetRace(race);
-        SetAllClasses();
-        
-        foreach (var effect in effects)
+        foreach (var effect in Effects)
         {
             ApplyEffect(effect);
         }
+        
+        SetRace(race);
+        SetAllClasses();
     }
 
     private void SetAllClasses()
@@ -67,7 +66,7 @@ public class Character :
     {
         if (Race != null) Race.RemoveSelf();
         Race = race;
-        race.Target = this;
+        Race.Target = this;
         OnRaceSet?.Invoke(race);
     }
     
