@@ -47,6 +47,7 @@ public class BaseClass : IClass, IHasEffect<Effect>
 
     private void ApplyEffect(Effect effect)
     {
+        if (_target == null) return;
         effect.Apply();
     }
 
@@ -54,7 +55,7 @@ public class BaseClass : IClass, IHasEffect<Effect>
     {
         if (Effects.Remove(effect))
         {
-            effect.Remove();
+            if (_target != null) effect.Remove();
             OnEffectAdded?.Invoke(effect);
             return true;
         }

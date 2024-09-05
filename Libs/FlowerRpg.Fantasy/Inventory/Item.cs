@@ -92,4 +92,12 @@ public class Item(ItemTemplate itemTemplate) : IItem, IHasItemTemplate<ItemTempl
         MaxStack += maxStack;
         return this;
     }
+
+    public virtual void Use()
+    {
+    }
+
+    public virtual void Release()
+    {
+    }
 }

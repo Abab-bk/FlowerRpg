@@ -1,6 +1,6 @@
 ﻿namespace FlowerRpg.Fantasy.Classes.Affixes;
 
-public class Affix
+public abstract class Affix
 {
     public string Name { get; set; } = "";
     public string Desc { get; set; } = "";

@@ -46,6 +46,7 @@ public class BaseRace : IRace, IHasEffect<Effect>
     
     private void ApplyEffect(Effect effect)
     {
+        if (_target == null) return;
         effect.Apply();
     }
 
@@ -53,7 +54,7 @@ public class BaseRace : IRace, IHasEffect<Effect>
     {
         if (Effects.Remove(effect))
         {
-            effect.Remove();
+            if (_target != null) effect.Remove();
             OnEffectAdded?.Invoke(effect);
             return true;
         }

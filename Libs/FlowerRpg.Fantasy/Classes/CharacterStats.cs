@@ -5,7 +5,7 @@ namespace FlowerRpg.Fantasy.Classes;
 
 public class CharacterStats : IStatsData
 {
-    public Stat
+    public readonly Stat
         Health = new Stat(100f),
         Mana = new Stat(100f),
         Strength = new Stat(0f),
