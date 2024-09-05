@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <Folder Include="Classes\" />
+      <Folder Include="Combat\" />
     </ItemGroup>
 
 </Project>
