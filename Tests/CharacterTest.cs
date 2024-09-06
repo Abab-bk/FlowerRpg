@@ -24,7 +24,7 @@ public class CharacterTest
     public void AddClass()
     {
         var baseClass = new BaseClass();
-        baseClass.AddEffect(new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
+        baseClass.AddEffect(new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
         _character.AddClass(baseClass);
         Assert.That(_character.StatsData.Strength.Value, Is.EqualTo(100f));
     }
@@ -33,7 +33,7 @@ public class CharacterTest
     public void RemoveClass()
     {
         var baseClass = new BaseClass();
-        baseClass.AddEffect(new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
+        baseClass.AddEffect(new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
         _character.AddClass(baseClass);
         _character.RemoveClass(baseClass);
         Assert.That(_character.StatsData.Strength.Value, Is.EqualTo(0f));
@@ -43,7 +43,7 @@ public class CharacterTest
     public void HasClass()
     {
         var baseClass = new BaseClass();
-        baseClass.AddEffect(new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
+        baseClass.AddEffect(new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
         _character.AddClass(baseClass);
         Assert.That(_character.HasClass(baseClass), Is.True);
     }
@@ -52,7 +52,7 @@ public class CharacterTest
     public void SetRace()
     {
         var race = new BaseRace();
-        race.AddEffect(new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
+        race.AddEffect(new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 100f });
         _character.SetRace(race);
         Assert.That(_character.StatsData.Strength.Value, Is.EqualTo(100f));
     }
@@ -60,31 +60,31 @@ public class CharacterTest
     [Test]
     public void AddEffect()
     {
-        _character.AddEffect(new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f });
+        _character.AddEffect(new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f });
         Assert.That(_character.StatsData.Strength.Value, Is.EqualTo(10f));
     }
     
     [Test]
-    public void RemoveEffect()
+    public void RemoveModifierEffect()
     {
-        var effect = new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f };
+        var effect = new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f };
         _character.AddEffect(effect);
         Assert.That(_character.RemoveEffect(effect), Is.True);
         Assert.That(_character.HasEffect(effect), Is.False);
     }
     
     [Test]
-    public void HasEffect()
+    public void HasModifierEffect()
     {
-        var effect = new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f };
+        var effect = new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f };
         _character.AddEffect(effect);
         Assert.That(_character.HasEffect(effect), Is.True);
     }
     
     [Test]
-    public void ClearEffects()
+    public void ClearModifierEffects()
     {
-        var effect = new Effect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f };
+        var effect = new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat) { Potency = 10f };
         _character.AddEffect(effect);
         _character.ClearEffects();
         Assert.That(_character.HasEffect(effect), Is.False);
@@ -102,8 +102,8 @@ public class CharacterTest
             []
         );
         
-        class1.AddEffect(new Effect(character.StatsData.Strength, ModifierType.Flat) { Potency = 10f });
-        class2.AddEffect(new Effect(character.StatsData.Strength, ModifierType.Flat) { Potency = 10f });
+        class1.AddEffect(new ModifierEffect(character.StatsData.Strength, ModifierType.Flat) { Potency = 10f });
+        class2.AddEffect(new ModifierEffect(character.StatsData.Strength, ModifierType.Flat) { Potency = 10f });
         
         Assert.That(character.StatsData.Strength.Value, Is.EqualTo(20f));
     }

@@ -30,7 +30,7 @@ public class RequirementTest
     [Test]
     public void IsRequirementMet_Return_True()
     {
-        _character.AddEffect(new Effect(_character.StatsData.Strength, ModifierType.Flat)
+        _character.AddEffect(new ModifierEffect(_character.StatsData.Strength, ModifierType.Flat)
         {
             Potency = 10f
         });
