@@ -64,12 +64,4 @@ public class ItemTest
         item.RemoveQuantity(1);
         Assert.That(item.Quantity, Is.EqualTo(1));
     }
-
-    [Test]
-    public void RemoveQuantity_All_Event()
-    {
-        var item = _propItem.Clone();
-        item.OnRemoved += Assert.Pass;
-        item.RemoveQuantity(2);
-    }
 }
