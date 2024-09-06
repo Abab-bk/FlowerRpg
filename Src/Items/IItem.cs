@@ -1,5 +1,4 @@
 ﻿using FlowerRpg.Interfaces;
-using FlowerRpg.Inventory;
 
 namespace FlowerRpg.Items;
 

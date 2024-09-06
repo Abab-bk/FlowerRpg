@@ -1,6 +1,5 @@
-﻿using FlowerRpg.Fantasy.Enums;
+﻿using FlowerRpg.Fantasy.Util;
 using FlowerRpg.Interfaces;
-using FlowerRpg.Inventory;
 using FlowerRpg.Items;
 
 namespace FlowerRpg.Fantasy.Items;
@@ -81,8 +80,8 @@ public class Item(ItemTemplate itemTemplate) : IItem, IHasItemTemplate<ItemTempl
 
     public bool IsEqual(Item item)
     {
-        if (item.Template.ItemType == ItemType.Weapon
-            || Template.ItemType == ItemType.Weapon
+        if (TypesHelper.IsEquipment(item.Template.ItemType)
+            || TypesHelper.IsEquipment(Template.ItemType)
            )
             return false;
         return true;

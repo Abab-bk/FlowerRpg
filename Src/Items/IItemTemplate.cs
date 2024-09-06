@@ -1,4 +1,4 @@
-﻿namespace FlowerRpg.Inventory;
+﻿namespace FlowerRpg.Items;
 
 public interface IItemTemplate
 {

@@ -1,10 +1,12 @@
 ﻿using FlowerRpg.Fantasy.Classes;
-using FlowerRpg.Fantasy.Inventory;
+using FlowerRpg.Items;
 
-namespace FlowerRpg.Fantasy.Items;
+namespace FlowerRpg.Fantasy.Items.Equipment;
 
-public class Equipment(ItemTemplate itemTemplate) : AffixItem(itemTemplate)
+public class Equipment(ItemTemplate itemTemplate) : AffixItem(itemTemplate), IEquipment
 {
+    public IEquipmentSlots Slots { get; } = new EquipmentSlots();
+    
     public void Equip(CharacterStats stats)
     {
         base.Use();

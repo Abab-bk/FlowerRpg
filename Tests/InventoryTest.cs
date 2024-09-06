@@ -14,7 +14,7 @@ public class InventoryTest
     {
         _weaponItem = new Item(new ItemTemplate
         {
-            ItemType = ItemType.Weapon,
+            ItemType = ItemType.Sword,
             QualityType = QualityType.Common
         });
         _propItem = new Item(new ItemTemplate

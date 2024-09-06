@@ -2,6 +2,7 @@
 using FlowerRpg.Fantasy.Classes.Affixes;
 using FlowerRpg.Fantasy.Inventory;
 using FlowerRpg.Fantasy.Items;
+using FlowerRpg.Fantasy.Items.Equipment;
 using FlowerRpg.Fantasy.Races;
 
 namespace Tests;

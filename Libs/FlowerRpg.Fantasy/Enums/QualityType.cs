@@ -3,7 +3,6 @@
 public enum QualityType
 {
     Common,
-    Uncommon,
     Rare,
     Epic,
     Legendary,
