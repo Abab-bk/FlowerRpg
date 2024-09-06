@@ -1,5 +1,6 @@
 ﻿using FlowerRpg.Fantasy.Items;
 using FlowerRpg.Inventory;
+using FlowerRpg.Items;
 
 namespace FlowerRpg.Fantasy.Inventory;
 
@@ -29,33 +30,40 @@ public class StackInventory(int slotCount) : IInventory<Item>
 
     public bool AddItem(Item item)
     {
+        if (SlotCount <= GetAllItemCount()) return false;
+        
         var newItem = item.Clone();
         
         bool AddNewItem(Item addItem)
         {
-            if (_items.Count >= SlotCount) return false;
+            if (SlotCount <= GetAllItemCount()) return false;
             _items.Add(addItem);
             OnItemAdded?.Invoke(addItem);
             return true;
         }
+
+        var needAdded = newItem.Quantity;
         
-        // if exists in inventory
-        foreach (var item1 in _items)
+        while (needAdded > 0)
         {
-            if (!item1.IsEqual(newItem)) continue;
-            if (item1.TryAddQuantity(newItem.Quantity, out var needAdded))
+            // if exists and has room to stack more.
+            if (_items.Exists(x => x.IsEqual(newItem) && x.Quantity < newItem.MaxStack))
             {
-                if (needAdded == 0) return true;
-                newItem.Quantity = needAdded;
+                var item1 = _items.First(x => x.IsEqual(newItem) && x.Quantity < newItem.MaxStack);
+                // calculate how many can be added
+                var maxCanAdd = newItem.MaxStack - item1.Quantity;
+                // add to stack
+                var quantityAddToStack = Math.Min(needAdded, maxCanAdd);
+                item1.Quantity += quantityAddToStack;
+                needAdded -= quantityAddToStack;
+            }
+            else
+            {
                 return AddNewItem(newItem);
             }
-
-            // if exists and to max, add new one
-            item1.Quantity = needAdded;
-            return AddNewItem(newItem);
         }
 
-        return AddNewItem(newItem);
+        return false;
     }
 
     public bool RemoveItem(Item item)
