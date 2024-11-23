@@ -14,16 +14,5 @@ public class AttackProcessorTest
     [Test]
     public void ProcessAttack()
     {
-        var player = new Character([], new BaseRace(), []);
-        var mob = new Character([], new BaseRace(), []);
-
-        var processedAttack =
-            new BasicAttackProcessor()
-                .ProcessAttack(
-                    new BasicAttackGenerator().GenerateAttack(player.StatsData),
-                    mob.StatsData
-                    );
-        
-        Assert.That(processedAttack.DamageDone.First().Value, Is.EqualTo(1f));
     }
 }

@@ -2,14 +2,12 @@
 using FlowerRpg.Classes;
 using FlowerRpg.Effects;
 using FlowerRpg.Fantasy.Classes;
-using FlowerRpg.Fantasy.Effects;
 using FlowerRpg.Fantasy.Races;
-using FlowerRpg.Interfaces;
 
 namespace FlowerRpg.Fantasy.Characters;
 
 public class Character :
-    ICharacter<CharacterStats>,
+    ICharacter,
     IHasEffect<Effect>,
     IHasClass<BaseClass>,
     IHasRace<BaseRace>
@@ -21,7 +19,6 @@ public class Character :
     
     public int Id { get; set; } = 0;
     public string Name { get; set; } = "";
-    public CharacterStats StatsData { get; } = new CharacterStats();
     public List<BaseClass> Classes { get; private set; }
     public BaseRace Race { get; private set; }
     public List<Effect> Effects { get; }

@@ -1,7 +1,6 @@
 ﻿using FlowerRpg.Classes;
+using FlowerRpg.Effects;
 using FlowerRpg.Fantasy.Characters;
-using FlowerRpg.Fantasy.Effects;
-using FlowerRpg.Interfaces;
 
 namespace FlowerRpg.Fantasy.Classes;
 

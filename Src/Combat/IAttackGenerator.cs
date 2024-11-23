@@ -1,8 +1,8 @@
-﻿using FlowerRpg.Interfaces;
+﻿using FlowerRpg.Stats;
 
 namespace FlowerRpg.Combat;
 
-public interface IAttackGenerator<in T> where T : IStatsData
+public interface IAttackGenerator
 {
-    public Attack GenerateAttack(T stats);
+    public Attack GenerateAttack(IEnumerable<IStat> stats);
 }

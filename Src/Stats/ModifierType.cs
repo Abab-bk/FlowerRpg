@@ -4,5 +4,5 @@ public enum ModifierType
 {
     Flat,
     PercentAdd,
-    PercentMult,
+    PercentMult
 }

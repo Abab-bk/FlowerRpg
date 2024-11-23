@@ -1,6 +1,4 @@
-﻿using FlowerRpg.Effects;
-
-namespace FlowerRpg.Interfaces;
+﻿namespace FlowerRpg.Effects;
 
 public interface IHasEffect<T> where T : IEffect
 {

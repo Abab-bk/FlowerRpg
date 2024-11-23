@@ -1,8 +1,8 @@
-﻿using FlowerRpg.Interfaces;
+﻿using FlowerRpg.Stats;
 
 namespace FlowerRpg.Combat;
 
-public interface IAttackProcessor<in T> where T : IStatsData
+public interface IAttackProcessor
 {
-    public ProcessedAttack ProcessAttack(Attack attack, T stats);
+    public ProcessedAttack ProcessAttack(Attack attack, IEnumerable<IStat> stats);
 }

@@ -1,5 +1,5 @@
-﻿using FlowerRpg.Fantasy.Characters;
-using FlowerRpg.Fantasy.Effects;
+﻿using FlowerRpg.Effects;
+using FlowerRpg.Fantasy.Characters;
 using FlowerRpg.Interfaces;
 
 namespace FlowerRpg.Fantasy.Races;
