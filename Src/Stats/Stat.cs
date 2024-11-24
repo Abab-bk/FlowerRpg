@@ -1,17 +1,17 @@
 ﻿namespace FlowerRpg.Stats;
 
-public class Stat : IStat
+public class Stat(float baseValue) : IStat
 {
-    public Action<float> OnValueChanged { get; }
+    public Action<float> OnValueChanged { get; set; }
+    
     public float Value {
         get
         {
-            if (_isDirty)
-            {
-                _value = CalculateValue();
-                OnValueChanged(_value);
-                _isDirty = false;
-            }
+            if (!IsDirty) return _value;
+            
+            _value = CalculateValue();
+            OnValueChanged?.Invoke(_value);
+            IsDirty = false;
             return _value;
         }
     }
@@ -20,53 +20,89 @@ public class Stat : IStat
     
     public List<Modifier> Modifiers { get; } = new ();
     
-    private bool _isDirty;
+    protected bool IsDirty { get; set; } = true;
+    protected float BaseValue {
+        get => _baseValue;
+        set
+        {
+            if (_baseValue.Equals(value)) return;
+            _baseValue = value;
+            IsDirty = true;
+            OnValueChanged?.Invoke(Value);
+        }
+    }
+    
+    private float _baseValue = baseValue;
 
+    
+    private int CompareModifierOrder(Modifier a, Modifier b)
+    {
+        if (a.Order < b.Order)
+            return -1;
+        if (a.Order > b.Order)
+            return 1;
+        return 0;
+    }
+    
     private float CalculateValue()
     {
-        var value = Value;
-        
-        foreach (var modifier in Modifiers)
+        float finalValue = BaseValue;
+        float sumPercentAdd = 0;
+ 
+        for (int i = 0; i < Modifiers.Count; i++)
         {
-            switch (modifier.Type)
+            var mod = Modifiers[i];
+            
+            switch (mod.Type)
             {
                 case ModifierType.Flat:
-                    value += modifier.Value;
+                    finalValue += mod.Value;
                     break;
                 case ModifierType.PercentAdd:
-                    value += value * modifier.Value;
+                    sumPercentAdd += mod.Value;
+ 
+                    if (i + 1 >= Modifiers.Count || Modifiers[i + 1].Type != ModifierType.PercentAdd)
+                    {
+                        finalValue *= 1 + sumPercentAdd;
+                        sumPercentAdd = 0;
+                    }
+                    
                     break;
                 case ModifierType.PercentMult:
-                    value *= 1 + modifier.Value;
+                    finalValue *= 1 + mod.Value;
                     break;
             }
         }
-
-        return value;
+ 
+        return (float)Math.Round(finalValue, 4);
     }
+
+    public bool HasModifier(Modifier modifier) => Modifiers.Contains(modifier);
 
     public void AddModifier(Modifier modifier)
     {
         Modifiers.Add(modifier);
-        _isDirty = true;
+        Modifiers.Sort(CompareModifierOrder);
+        IsDirty = true;
     }
 
-    public void RemoveModifier(Modifier modifier)
+    public bool RemoveModifier(Modifier modifier)
     {
-        Modifiers.Remove(modifier);
-        _isDirty = true;
+        var result = Modifiers.Remove(modifier);
+        IsDirty = true;
+        return result;
     }
 
     public void RemoveAllModifiers()
     {
         Modifiers.Clear();
-        _isDirty = true;
+        IsDirty = true;
     }
 
     public void RemoveAllModifiersFromSource(object source)
     {
         Modifiers.RemoveAll(m => m.Source == source);
-        _isDirty = true;
+        IsDirty = true;
     }
 
     public IEnumerable<Modifier> GetModifiers() => Modifiers;

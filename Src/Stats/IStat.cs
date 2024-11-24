@@ -2,11 +2,12 @@
 
 public interface IStat
 {
-    public Action<float> OnValueChanged { get; }
+    public Action<float> OnValueChanged { get; set; }
     public float Value { get; }
     
+    public bool HasModifier(Modifier modifier);
     public void AddModifier(Modifier modifier);
-    public void RemoveModifier(Modifier modifier);
+    public bool RemoveModifier(Modifier modifier);
     public void RemoveAllModifiers();
     public void RemoveAllModifiersFromSource(object source);
     
