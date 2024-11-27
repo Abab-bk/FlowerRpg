@@ -2,7 +2,8 @@
 
 public interface IEffect
 {
-    public float Potency { get; set; }
+    public event Action OnShouldRemove;
     public void Apply();
     public void Remove();
+    public void OnTick();
 }

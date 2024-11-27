@@ -2,10 +2,9 @@
 
 public interface IHasEffect
 {
-    public Action<IEffect> OnEffectAdded { get; set; }
     public List<IEffect> Effects { get; }
-    public void AddEffect(IEffect effectAbstract);
-    public bool RemoveEffect(IEffect effectAbstract);
-    public bool HasEffect(IEffect effectAbstract);
+    public void AddEffect(IEffect effect);
+    public bool RemoveEffect(IEffect effect);
+    public bool HasEffect(IEffect effect);
     public void ClearEffects();
 }
