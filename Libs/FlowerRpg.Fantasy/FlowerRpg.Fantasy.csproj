@@ -10,9 +10,4 @@
       <ProjectReference Include="..\..\Src\FlowerRpg.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Effects\" />
-      <Folder Include="Stats\" />
-    </ItemGroup>
-
 </Project>

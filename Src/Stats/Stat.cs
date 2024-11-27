@@ -1,4 +1,6 @@
-﻿namespace FlowerRpg.Stats;
+﻿using FlowerRpg.Stats.Modifiers;
+
+namespace FlowerRpg.Stats;
 
 public class Stat(float baseValue) : IStat
 {
@@ -46,34 +48,31 @@ public class Stat(float baseValue) : IStat
     
     private float CalculateValue()
     {
-        float finalValue = BaseValue;
-        float sumPercentAdd = 0;
- 
-        for (int i = 0; i < Modifiers.Count; i++)
+        var finalValue = BaseValue;
+        var flatValue = 0f;
+        var percentAddValue = 0f;
+        var percentMultValue = 1f;
+        
+        foreach (var modifier in Modifiers)
         {
-            var mod = Modifiers[i];
-            
-            switch (mod.Type)
+            switch (modifier.Type)
             {
                 case ModifierType.Flat:
-                    finalValue += mod.Value;
+                    flatValue += modifier.GetValue(baseValue);
                     break;
                 case ModifierType.PercentAdd:
-                    sumPercentAdd += mod.Value;
- 
-                    if (i + 1 >= Modifiers.Count || Modifiers[i + 1].Type != ModifierType.PercentAdd)
-                    {
-                        finalValue *= 1 + sumPercentAdd;
-                        sumPercentAdd = 0;
-                    }
-                    
+                    percentAddValue += modifier.GetValue(baseValue);
                     break;
                 case ModifierType.PercentMult:
-                    finalValue *= 1 + mod.Value;
+                    percentMultValue *= 1 + modifier.GetValue(baseValue);
                     break;
             }
         }
- 
+        
+        finalValue += flatValue;
+        finalValue *= 1 + percentAddValue;
+        finalValue *= percentMultValue;
+        
         return (float)Math.Round(finalValue, 4);
     }
 

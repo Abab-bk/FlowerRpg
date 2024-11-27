@@ -1,4 +1,6 @@
-﻿namespace FlowerRpg.Stats;
+﻿using FlowerRpg.Stats.Modifiers;
+
+namespace FlowerRpg.Stats;
 
 public interface IStat
 {

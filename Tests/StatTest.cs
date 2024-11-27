@@ -1,4 +1,5 @@
 ﻿using FlowerRpg.Stats;
+using FlowerRpg.Stats.Modifiers;
 
 namespace Tests;
 
@@ -8,8 +9,26 @@ public class StatTest
     private Modifier _flatModifier;
     private Modifier _percentAddModifier;
     private Modifier _percentMultModifier;
-    // applier: x = 1, value will be * 10
-    // private Modifier _customModifier;
+    
+    private CustomModifier _customModifier;
+    
+    private class CustomModifier : Modifier
+    {
+        public CustomModifier(float value, object source)
+            : base(value, ModifierType.Flat, source)
+        {
+        }
+
+        public CustomModifier(float value, int order = 0, object source = null)
+            : base(value, ModifierType.Flat, order, source)
+        {
+        }
+
+        public override float GetValue(float baseValue)
+        {
+            return Value * 10;
+        }
+    }
     
     [SetUp]
     public void Setup()
@@ -18,9 +37,7 @@ public class StatTest
         _flatModifier = new Modifier(10, ModifierType.Flat);
         _percentAddModifier = new Modifier(0.1f, ModifierType.PercentAdd);
         _percentMultModifier = new Modifier(0.2f, ModifierType.PercentMult);
-        // _customModifier = new Modifier(1f,
-        //     (stat, modifierValue) => modifierValue * 10
-        //     );
+        _customModifier = new CustomModifier(10f);
     }
 
     [Test]
@@ -44,12 +61,12 @@ public class StatTest
         Assert.That(_testStat.Value, Is.EqualTo(120));
     }
     
-    // [Test]
-    // public void AddCustomModifier_ModifierAdded()
-    // {
-    //     _testStat.AddModifier(_customModifier);
-    //     Assert.That(_testStat.Value, Is.EqualTo(1000));
-    // }
+    [Test]
+    public void AddCustomModifier_ModifierAdded()
+    {
+        _testStat.AddModifier(_customModifier);
+        Assert.That(_testStat.Value, Is.EqualTo(200f));
+    }
 
 
     [Test]

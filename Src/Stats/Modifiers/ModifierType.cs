@@ -1,4 +1,4 @@
-﻿namespace FlowerRpg.Stats;
+﻿namespace FlowerRpg.Stats.Modifiers;
 
 public enum ModifierType
 {
