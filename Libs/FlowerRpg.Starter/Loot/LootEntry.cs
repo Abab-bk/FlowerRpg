@@ -3,7 +3,7 @@ using FlowerRpg.Loot;
 
 namespace FlowerRpg.Starter.Loot;
 
-public struct LootEntry(
+public readonly struct LootEntry(
     int itemId,
     int minQuantity = 1,
     int maxQuantity = 1,
