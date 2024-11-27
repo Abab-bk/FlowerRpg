@@ -1,8 +1,6 @@
-﻿using FlowerRpg.Interfaces;
+﻿namespace FlowerRpg.Items;
 
-namespace FlowerRpg.Items;
-
-public interface IItem : IHasItemTemplate<IItemTemplate>
+public interface IItem
 {
     public int Id { get; set; }
     public string Name { get; set; }

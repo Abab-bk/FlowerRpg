@@ -1,6 +1,5 @@
 ﻿namespace FlowerRpg.Items;
 
-public interface IEquipment
+public interface IEquipment : IHasItemSlots
 {
-    public IEquipmentSlots Slots { get; }
 }

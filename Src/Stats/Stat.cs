@@ -58,13 +58,13 @@ public class Stat(float baseValue) : IStat
             switch (modifier.Type)
             {
                 case ModifierType.Flat:
-                    flatValue += modifier.GetValue(baseValue);
+                    flatValue += modifier.GetValue(BaseValue);
                     break;
                 case ModifierType.PercentAdd:
-                    percentAddValue += modifier.GetValue(baseValue);
+                    percentAddValue += modifier.GetValue(BaseValue);
                     break;
                 case ModifierType.PercentMult:
-                    percentMultValue *= 1 + modifier.GetValue(baseValue);
+                    percentMultValue *= 1 + modifier.GetValue(BaseValue);
                     break;
             }
         }

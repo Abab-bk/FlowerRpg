@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Libs\FlowerRpg.Fantasy\FlowerRpg.Fantasy.csproj" />
+      <ProjectReference Include="..\Libs\FlowerRpg.Starter\FlowerRpg.Starter.csproj" />
       <ProjectReference Include="..\Src\FlowerRpg.csproj" />
     </ItemGroup>
 
