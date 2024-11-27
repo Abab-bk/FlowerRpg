@@ -4,9 +4,9 @@ using FlowerRpg.Starter.Stats;
 
 namespace FlowerRpg.Starter.Requirements;
 
-public class CharacterRequirementChecker : IRequirementChecker<Character>
+public static class CharacterRequirementChecker
 {
-    public bool IsRequirementMet(Character target, Requirement requirement)
+    public static bool IsRequirementMet(Character target, Requirement requirement)
     {
         switch (requirement.RequirementType)
         {
