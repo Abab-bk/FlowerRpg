@@ -2,10 +2,10 @@
 
 namespace FlowerRpg.Starter.Stats;
 
-public class CharacterStats
+public class CharacterStats : IStats
 {
-    private Vital[] Vitals { get; }
-    private IStat[] Stats { get; }
+    public Vital[] Vitals { get; }
+    public IStat[] Stats { get; }
 
     public bool GetVital(StatType statType, out Vital? vital)
     {

@@ -4,5 +4,5 @@ namespace FlowerRpg.Combat;
 
 public interface IAttackGenerator
 {
-    public Attack GenerateAttack(IEnumerable<IStat> stats);
+    public Attack GenerateAttack(IStats stats);
 }
