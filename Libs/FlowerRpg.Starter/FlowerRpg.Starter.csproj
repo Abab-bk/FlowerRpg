@@ -10,4 +10,8 @@
       <ProjectReference Include="..\..\Src\FlowerRpg.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Libs\" />
+    </ItemGroup>
+
 </Project>

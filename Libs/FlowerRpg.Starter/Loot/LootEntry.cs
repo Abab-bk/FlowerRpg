@@ -1,4 +1,4 @@
-﻿using FlowerRpg.Items;
+﻿using FlowerRpg.Inventories;
 using FlowerRpg.Loot;
 
 namespace FlowerRpg.Starter.Loot;
@@ -15,5 +15,8 @@ public readonly struct LootEntry(
     public int MaxQuantity { get; init; } = maxQuantity;
     public int Weight { get; init; } = weight;
 
-    public IItem Item => RpgManager.Instance.DataBase.GetItem(ItemId);
+    public ItemStack ItemStack => new ItemStack(
+        ItemId,
+        Random.Shared.Next(MinQuantity, MaxQuantity + 1)
+        );
 }

@@ -1,9 +1,9 @@
-﻿using FlowerRpg.Items;
+﻿using FlowerRpg.Inventories;
 
 namespace FlowerRpg.Loot;
 
 public interface ILootTable<T> where T : ILootTableEntry
 {
-    public ICollection<T> AvailableLoot { get; }
-    public IItem GetLoot();
+    public IEnumerable<ItemStack> GetLoots(int count = 1);
+    public ItemStack GetLoot();
 }
