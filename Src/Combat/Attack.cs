@@ -1,6 +1,6 @@
 ﻿namespace FlowerRpg.Combat;
 
-public class Attack
+public struct Attack
 {
     public ICollection<Damage> Damages { get; set; } = new List<Damage>(); 
 

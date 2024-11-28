@@ -1,6 +1,6 @@
 ﻿namespace FlowerRpg.Combat;
 
-public class Damage
+public struct Damage
 {
     public int Type { get; set; }
     public float Value { get; set; }
