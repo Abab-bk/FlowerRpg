@@ -8,13 +8,12 @@ public sealed class RpgManager
     public IDataBase DataBase { get; private set; }
     public Character Player { get; set; }
 
-    public static RpgManager Instance { get; private set; }
+    public static RpgManager? Instance { get; private set; }
     
-    public void Setup(
-        IDataBase dataBase
-    )
+    public RpgManager(IDataBase dataBase, Character player)
     {
         Instance = this;
+        Player = player;
         DataBase = dataBase;
     }
 }
