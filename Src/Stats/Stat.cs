@@ -5,24 +5,24 @@ namespace FlowerRpg.Stats;
 public class Stat(float baseValue) : IStat
 {
     public Action<float> OnValueChanged { get; set; }
-    
-    public float Value {
-        get
-        {
-            if (!IsDirty) return _value;
-            
-            _value = CalculateValue();
-            OnValueChanged?.Invoke(_value);
-            IsDirty = false;
-            return _value;
-        }
-    }
-    
-    private float _value;
-    
+
+    public float Value { get; private set; } = baseValue;
+
     public List<Modifier> Modifiers { get; } = new ();
     
-    protected bool IsDirty { get; set; } = true;
+    protected bool IsDirty {
+        get => _isDirty;
+        set
+        {
+            _isDirty = value;
+            if (!IsDirty) return;
+            Value = CalculateValue();
+            OnValueChanged?.Invoke(Value);
+            _isDirty = false;
+        }
+    }
+    private bool _isDirty = true;
+    
     protected float BaseValue {
         get => _baseValue;
         set
@@ -30,7 +30,6 @@ public class Stat(float baseValue) : IStat
             if (_baseValue.Equals(value)) return;
             _baseValue = value;
             IsDirty = true;
-            OnValueChanged?.Invoke(Value);
         }
     }
     
