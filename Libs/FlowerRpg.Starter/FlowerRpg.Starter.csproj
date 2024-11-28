@@ -14,4 +14,8 @@
       <Folder Include="Libs\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FastEnum" Version="2.0.2" />
+    </ItemGroup>
+
 </Project>

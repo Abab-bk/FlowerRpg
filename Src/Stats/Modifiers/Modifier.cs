@@ -7,8 +7,17 @@ public class Modifier(
     Object source = null
     ) : IModifier
 {
-    public Modifier(float value, ModifierType type, Object source)
+    public Modifier(ModifierType type, float value, int order, object source)
+        : this(value, type, order, source) {}
+    
+    public Modifier(ModifierType type, float value, int order)
+        : this(value, type, order) {}
+    
+    public Modifier(ModifierType type, float value, object source)
         : this(value, type, 0, source) {}
+    
+    public Modifier(ModifierType type, float value)
+        : this(value, type) {}
     
     public float Value { get; } = value;
     public Object Source { get; } = source;

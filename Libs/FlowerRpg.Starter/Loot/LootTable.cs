@@ -1,5 +1,6 @@
-﻿using FlowerRpg.Inventories;
+﻿using FlowerRpg.Items;
 using FlowerRpg.Loot;
+using FlowerRpg.Starter.Extensions;
 using KaimiraGames;
 
 namespace FlowerRpg.Starter.Loot;
@@ -7,18 +8,8 @@ namespace FlowerRpg.Starter.Loot;
 public class LootTable : ILootTable<LootEntry>
 {
     public WeightedList<LootEntry> AvailableLoot { get; }
-    
-    public IEnumerable<ItemStack> GetLoots(int count = 1)
-    {
-        var loots = new List<ItemStack>();
-        for (var i = 0; i < count; i++)
-        {
-            loots.Add(AvailableLoot.Next().ItemStack);
-        }
-        return loots.ToArray();
-    }
 
-    public ItemStack GetLoot() => AvailableLoot.Next().ItemStack;
+    public IItem GetLoot() => AvailableLoot.Next().GetItem();
 
     public LootTable(IEnumerable<LootEntry> lootEntries)
     {

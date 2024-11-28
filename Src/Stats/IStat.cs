@@ -8,7 +8,7 @@ public interface IStat
     public float Value { get; }
     
     public bool HasModifier(Modifier modifier);
-    public void AddModifier(Modifier modifier);
+    public bool AddModifier(Modifier modifier);
     public bool RemoveModifier(Modifier modifier);
     public void RemoveAllModifiers();
     public void RemoveAllModifiersFromSource(object source);

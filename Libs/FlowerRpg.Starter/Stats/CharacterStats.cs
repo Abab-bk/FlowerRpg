@@ -48,4 +48,23 @@ public class CharacterStats : IStats
             Stats[i] = new Stat(100);
         }
     }
+
+    public override string ToString()
+    {
+        var text = "";
+
+        for (int i = 0; i < Vitals.Length; i++)
+        {
+            text += ((StatType)i).ToString();
+            text += Environment.NewLine;
+        }
+        
+        for (int i = 0; i < Stats.Length; i++)
+        {
+            text += ((StatType)i).ToString();
+            text += Environment.NewLine;
+        }
+
+        return text;
+    }
 }

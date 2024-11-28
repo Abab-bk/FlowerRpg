@@ -1,4 +1,6 @@
-﻿namespace FlowerRpg.Starter.Stats;
+﻿using FastEnumUtility;
+
+namespace FlowerRpg.Starter.Stats;
 
 public static class StatTypeUtil
 {
@@ -8,7 +10,7 @@ public static class StatTypeUtil
     public static int GetVitalCount()
     {
         int count = 0;
-        foreach (StatType statType in Enum.GetValues(typeof(StatType)))
+        foreach (StatType statType in FastEnum.GetValues<StatType>())
         {
             if (IsVital(statType)) count++;
         }
@@ -18,7 +20,7 @@ public static class StatTypeUtil
     public static int GetStatCount()
     {
         int count = 0;
-        foreach (StatType statType in Enum.GetValues(typeof(StatType)))
+        foreach (StatType statType in FastEnum.GetValues<StatType>())
         {
             if (!IsVital(statType)) count++;
         }

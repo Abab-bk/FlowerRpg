@@ -1,5 +1,4 @@
-﻿using FlowerRpg.Inventories;
-using FlowerRpg.Loot;
+﻿using FlowerRpg.Loot;
 
 namespace FlowerRpg.Starter.Loot;
 
@@ -14,9 +13,4 @@ public readonly struct LootEntry(
     public int MinQuantity { get; init; } = minQuantity;
     public int MaxQuantity { get; init; } = maxQuantity;
     public int Weight { get; init; } = weight;
-
-    public ItemStack ItemStack => new ItemStack(
-        ItemId,
-        Random.Shared.Next(MinQuantity, MaxQuantity + 1)
-        );
 }

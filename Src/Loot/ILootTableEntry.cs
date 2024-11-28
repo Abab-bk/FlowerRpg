@@ -1,8 +1,6 @@
-﻿using FlowerRpg.Inventories;
-
-namespace FlowerRpg.Loot;
+﻿namespace FlowerRpg.Loot;
 
 public interface ILootTableEntry
 {
-    public ItemStack ItemStack { get; }
+    public int ItemId { get; }
 }

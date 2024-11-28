@@ -78,11 +78,14 @@ public class Stat(float baseValue) : IStat
 
     public bool HasModifier(Modifier modifier) => Modifiers.Contains(modifier);
 
-    public void AddModifier(Modifier modifier)
+    public bool AddModifier(Modifier modifier)
     {
+        if (modifier == null) return false;
+
         Modifiers.Add(modifier);
         Modifiers.Sort(CompareModifierOrder);
         IsDirty = true;
+        return true;
     }
 
     public bool RemoveModifier(Modifier modifier)
