@@ -6,4 +6,8 @@
         <Nullable>disable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FlowerRpg.Stats" Version="2.1.0" />
+    </ItemGroup>
+
 </Project>

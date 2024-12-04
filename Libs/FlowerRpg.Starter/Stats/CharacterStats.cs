@@ -1,70 +1,44 @@
-﻿using FlowerRpg.Stats;
+﻿using FastEnumUtility;
+using FlowerRpg.Stats;
 
 namespace FlowerRpg.Starter.Stats;
 
 public class CharacterStats : IStats
 {
-    public Vital[] Vitals { get; }
-    public IStat[] Stats { get; }
-
-    public bool GetVital(StatType statType, out Vital? vital)
-    {
-        if (!StatTypeUtil.IsVital(statType))
-        {
-            vital = null;
-            return false;
-        }
-
-        vital = Vitals[(int)statType];
-        return true;
-    }
+    private readonly Vital[] _vitals;
+    private readonly IStat[] _stats;
     
-    public bool GetStat(StatType statType, out IStat? stat)
+    public CharacterStats(StatsConfig config)
     {
-        if (StatTypeUtil.IsVital(statType))
+        _vitals = new Vital[FastEnum.GetValues<VitalType>().Length];
+        _stats = new IStat[FastEnum.GetValues<StatType>().Length];
+        
+        Vital NewVital(VitalType type, Stat maxValue, float minValue = 0f, float ratio = 1f)
         {
-            stat = null;
-            return false;
+            var vital = new Vital(maxValue, 0f, 0, true, ratio);
+            _vitals[(int)type] = vital;
+            return vital;
         }
 
-        stat = Stats[(int)statType];
-        return true;
+        Stat NewStat(StatType type, float value)
+        {
+            var stat = new Stat(value);
+            _stats[(int)type] = stat;
+            return stat;
+        }
+
+        NewStat(StatType.Damage, config.Damage);
+        NewStat(StatType.Defense, config.Defense);
+        NewStat(StatType.Level, config.Level);
+
+        var maxHealth = NewStat(StatType.MaxHealth, config.MaxHealth);
+
+        NewVital(VitalType.Health, maxHealth);
     }
 
-    public Vital GetVital(StatType statType) => Vitals[(int)statType];
-    public IStat GetStat(StatType statType) => Stats[(int)statType];
     
-    public CharacterStats()
-    {
-        Vitals = new Vital[StatTypeUtil.GetVitalCount()];
-        Stats = new IStat[StatTypeUtil.GetStatCount()];
-        
-        for (int i = 0; i < Vitals.Length; i++)
-        {
-            Vitals[i] = new Vital(new Stat(100), 0, 0, true, 1);
-        }
-        for (int i = 0; i < Stats.Length; i++)
-        {
-            Stats[i] = new Stat(100);
-        }
-    }
-
-    public override string ToString()
-    {
-        var text = "";
-
-        for (int i = 0; i < Vitals.Length; i++)
-        {
-            text += ((StatType)i).ToString();
-            text += Environment.NewLine;
-        }
-        
-        for (int i = 0; i < Stats.Length; i++)
-        {
-            text += ((StatType)i).ToString();
-            text += Environment.NewLine;
-        }
-
-        return text;
-    }
+    public IStat GetStat(StatType statType) => GetStat((int)statType);
+    public Vital GetVital(VitalType statType) => GetVital((int)statType);
+    public Vital GetVital(int statType) => _vitals[statType]; 
+    public IStat GetStat(int statType) => _stats[statType];
 }

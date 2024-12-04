@@ -2,7 +2,7 @@
 
 public enum StatType
 {
-    Health,
+    MaxHealth,
     Level,
     Damage,
     Defense

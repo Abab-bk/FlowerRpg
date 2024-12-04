@@ -8,6 +8,6 @@ public class Character : ICharacter
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public CharacterStats Stats { get; init; } = new ();
+    public CharacterStats Stats { get; init; } = new (new StatsConfig());
     public EffectManager EffectManager { get; init; } = new ();
 }

@@ -1,6 +1,7 @@
 ﻿using FlowerRpg.Core.Requirements;
 using FlowerRpg.Starter.Characters;
 using FlowerRpg.Starter.Stats;
+using FlowerRpg.Stats;
 
 namespace FlowerRpg.Starter.Requirements;
 
