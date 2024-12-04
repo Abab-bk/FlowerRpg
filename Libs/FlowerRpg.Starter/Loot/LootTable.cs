@@ -5,12 +5,10 @@ using KaimiraGames;
 
 namespace FlowerRpg.Starter.Loot;
 
-public class LootTable : ILootTable<LootEntry>
+public class LootTable : ILootTable
 {
     public WeightedList<LootEntry> AvailableLoot { get; }
-
-    public IItem GetLoot() => AvailableLoot.Next().GetItem();
-
+    
     public LootTable(IEnumerable<LootEntry> lootEntries)
     {
         var items = new List<WeightedListItem<LootEntry>>();
@@ -21,5 +19,12 @@ public class LootTable : ILootTable<LootEntry>
         }
         
         AvailableLoot = new WeightedList<LootEntry>(items);
+    }
+
+    public IEnumerable<IItemStack> GetLoots()
+    {
+        return [
+            AvailableLoot.Next().GetItem()
+        ];
     }
 }

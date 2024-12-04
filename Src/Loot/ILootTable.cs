@@ -2,7 +2,7 @@
 
 namespace FlowerRpg.Loot;
 
-public interface ILootTable<T> where T : ILootTableEntry
+public interface ILootTable
 {
-    public IItem GetLoot();
+    public IEnumerable<IItemStack> GetLoots();
 }
